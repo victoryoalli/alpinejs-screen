@@ -1,4 +1,4 @@
-export default function (Alpine) {
+const Screen = function (Alpine) {
     Alpine.directive('screen', (el, obj, { evaluateLater, effect, cleanup }) => {
         let { value, expression, modifiers } = obj;
         let evaluate = evaluateLater(expression);
@@ -14,3 +14,4 @@ export default function (Alpine) {
         cleanup(() => observer.disconnect())
     })
 }
+export default  Screen

@@ -1,10 +1,9 @@
 {
-  "name": "@victoryoalli/alpine-screen",
+  "name": "@victoryoalli/alpinejs-screen",
   "version": "1.0.0",
   "description": "Trigger JavaScript when dimensions of an element's content is detected.",
-  "main": "dist/screen.js",
+  "main": "src/index.js",
   "module": "dist/screen.esm.js",
-  "unpkg": "dist/screen.min.js",
   "keywords": [],
   "author": "Victor Yoalli",
   "license": "MIT",
