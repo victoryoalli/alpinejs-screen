@@ -38,11 +38,11 @@ Directive
 
 # $width and $height
 Magic helpers
-```html
-<div x-data x-screen="isBig = $width>1024">
-    Bigger than 1024 pixels
-</div>
-```
+* `$width`
+This magic helper will return window.outerWidth
+
+* `$height`
+This magic helper will return window.outerHeight
 
 ### Example
 
