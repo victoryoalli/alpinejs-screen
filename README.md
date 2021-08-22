@@ -19,6 +19,10 @@ The **Screen Plugin** lets you programmatically monitor changes to the size of a
 
 ### Via NPM
 
+```bash
+npm i @victoryoalli/alpinejs-screen
+```
+
 ```javascript
 import Alpine from 'alpinejs'
 
