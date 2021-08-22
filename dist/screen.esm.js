@@ -13,6 +13,12 @@ var Screen = function(Alpine) {
     resizeObserver.observe(el);
     cleanup(() => observer.disconnect());
   });
+  Alpine.magic("width", () => {
+    return window.outerWidth;
+  });
+  Alpine.magic("height", () => {
+    return window.outerHeight;
+  });
 };
 var src_default = Screen;
 
