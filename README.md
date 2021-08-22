@@ -2,17 +2,21 @@
 
 The **Screen Plugin** lets you programmatically monitor changes to the size of an element.
 
-
-
 ## Instalation
 ### Via script include
 ```html
-<html>
-    <script src="/js/screen.min.js" defer></script>
-    <script src="/js/alpine.js" defer></script>
-
-</html>
+<script src="/js/screen.min.js" defer></script>
+<script src="/js/alpine.js" defer></script>
 ```
+
+### Via CDN
+```html
+<!-- Alpine Plugins -->
+<script src="https://unpkg.com/@victoryoalli/alpinejs-screen@1.0.0/dist/screen.min.js" defer></script>
+<!-- Alpine Core -->
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+```
+
 ### Via NPM
 
 ```javascript
