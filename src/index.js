@@ -14,4 +14,5 @@ const Screen = function (Alpine) {
         cleanup(() => observer.disconnect())
     })
 }
+
 export default  Screen
