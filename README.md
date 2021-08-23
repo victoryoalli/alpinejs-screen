@@ -1,6 +1,6 @@
 # Alpine.js plugin Screen
 
-The **Screen Plugin** lets you programmatically monitor changes to the size of an element.
+An Alpine JS **Screen Plugin** lets you programmatically monitor changes to the size of the screen
 
 ## Instalation
 ### Via script include
