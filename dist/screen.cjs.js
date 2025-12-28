@@ -13,25 +13,62 @@ __export(exports, {
 
 // src/index.js
 var Screen = function(Alpine) {
-  Alpine.directive("screen", (el, obj, { evaluateLater, effect, cleanup }) => {
-    let { value, expression, modifiers } = obj;
-    let evaluate = evaluateLater(expression);
-    let resizeObserver = new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        evaluate((value2) => {
+  const isV3 = typeof Alpine.magic === "function";
+  if (isV3) {
+    Alpine.directive("screen", (el, obj, { evaluateLater, cleanup }) => {
+      let { expression, modifiers } = obj;
+      let evaluate = evaluateLater(expression);
+      let resizeObserver = new ResizeObserver((entries) => {
+        entries.forEach(() => {
+          evaluate();
+          modifiers.includes("once") && resizeObserver.disconnect();
         });
-        modifiers.includes("once") && observer.disconnect();
       });
+      resizeObserver.observe(el);
+      cleanup(() => resizeObserver.disconnect());
     });
-    resizeObserver.observe(el);
-    cleanup(() => observer.disconnect());
-  });
-  Alpine.magic("width", () => {
-    return window.outerWidth;
-  });
-  Alpine.magic("height", () => {
-    return window.outerHeight;
-  });
+    Alpine.magic("width", () => window.outerWidth);
+    Alpine.magic("height", () => window.outerHeight);
+  } else {
+    Alpine.addMagicProperty("width", () => window.outerWidth);
+    Alpine.addMagicProperty("height", () => window.outerHeight);
+    const initHandler = (el) => {
+      const expression = el.getAttribute("x-screen");
+      if (!expression)
+        return;
+      const modifiers = [];
+      const attrNames = el.getAttributeNames();
+      attrNames.forEach((attr) => {
+        if (attr.startsWith("x-screen.")) {
+          modifiers.push(attr.replace("x-screen.", ""));
+        }
+      });
+      let resizeObserver = new ResizeObserver(() => {
+        el.__x.evaluateReturnExpression(el, expression);
+        modifiers.includes("once") && resizeObserver.disconnect();
+      });
+      resizeObserver.observe(el);
+      el.__x_screen_cleanup = () => resizeObserver.disconnect();
+    };
+    const destroyHandler = (el) => {
+      if (el.__x_screen_cleanup) {
+        el.__x_screen_cleanup();
+      }
+    };
+    if (Alpine.onBeforeComponentInitialized) {
+      Alpine.onBeforeComponentInitialized((component) => {
+        initHandler(component.$el);
+      });
+    }
+    if (Alpine.onComponentInitialized) {
+      Alpine.onComponentInitialized((component) => {
+        initHandler(component.$el);
+      });
+    }
+    document.addEventListener("alpine:initialized", () => {
+      document.querySelectorAll("[x-screen]").forEach(initHandler);
+    });
+  }
 };
 var src_default = Screen;
 

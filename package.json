@@ -5,13 +5,39 @@
   "main": "dist/screen.cjs.js",
   "module": "dist/screen.esm.js",
   "unpkg": "dist/screen.min.js",
-  "keywords": [],
+  "types": "dist/screen.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "alpinejs",
+    "alpine",
+    "plugin",
+    "screen",
+    "resize",
+    "responsive"
+  ],
   "author": "Victor Yoalli",
   "license": "MIT",
-  "dependencies": {
-    "esbuild": "^0.12.22"
+  "peerDependencies": {
+    "alpinejs": ">=2.0.0 <4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "alpinejs": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "alpinejs": "^3.15.3",
+    "esbuild": "^0.12.22",
+    "jsdom": "^27.4.0",
+    "vitest": "^4.0.16"
   },
   "scripts": {
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
   }
 }
