@@ -2,7 +2,9 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/victoryoalli/alpinejs-screen)
 
-An Alpine JS **Screen Plugin** lets you programmatically monitor changes to the size of the screen
+An Alpine JS **Screen Plugin** lets you programmatically monitor changes to the size of the screen.
+
+**Compatible with Alpine.js v2.x and v3.x**
 
 ## Instalation
 ### Via script include
